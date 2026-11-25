@@ -1,0 +1,129 @@
+# Podcast Factory show config
+# Fill in these fields, then run: podcast-factory generate --dry-run --brief examples/brief.md
+#
+# The values below describe The Portage Park Peep, a real weekly neighborhood
+# briefing for Portage Park on Chicago's Northwest Side. They are public-facing
+# facts only: no personal emails, no home addresses, no family details, and no
+# invented audience metrics. Copy this file and change the show block for your
+# own shop, parish, nonprofit, or block club. A generic starting point is in
+# examples/generic-shop.yaml.
+
+show:
+  name: The Portage Park Peep
+  tagline: Your Monday morning neighborly nudge from the Northwest Side.
+  niche: >
+    A weekly neighborhood briefing for Portage Park and nearby corners of
+    Chicago's Northwest Side — local news, shops, parks, homeowner to-dos,
+    and a little history.
+  target_audience: >
+    Neighbors, small shop owners, and anyone who wants a short, local catch-up
+    they can finish with their coffee.
+  tone: >
+    Warm, practical, and neighborly. Calm on safety items. No gossip, no
+    scare headlines, no invented urgency. Speak like a well-briefed neighbor,
+    not a radio announcer.
+  language: English
+  release_frequency: Weekly, on Monday
+  episode_length: about 5 minutes
+  typical_minutes: 5
+  # The live show does not name hosts in the audio. Keep the on-air voice
+  # as a single narrator; Gemini prebuilt voice names go in "voice".
+  signoff: >
+    That's the Peep for this week. This has been The Portage Park Peep.
+    See you next Monday.
+  hosts:
+    - name: Narrator
+      role: narrator
+      voice: Kore
+      style: warm, clear, and neighborly, like a local Monday briefing
+  sections:
+    - id: welcome
+      name: Welcome
+      description: Short greeting, the date, and one line on what week it is.
+      required: true
+      typical_seconds: 20
+    - id: lead
+      name: Lead story
+      description: The week's one story worth opening with.
+      required: true
+      typical_seconds: 45
+    - id: snapshot
+      name: This Week's Snapshot
+      description: Weather, calendar, and one practical note for the days ahead.
+      required: true
+      typical_seconds: 40
+    - id: commerce
+      name: Commerce Corner
+      description: Shop openings, events, and neighborhood business news.
+      required: true
+      typical_seconds: 35
+    - id: mischief
+      name: The Mild-Mannered Mischief Report
+      description: Public-safety notes, calmly and practically, from official alerts.
+      required: true
+      typical_seconds: 35
+    - id: huddle
+      name: Homeowner's Huddle
+      description: Seasonal to-dos, city deadlines, and fix-it reminders.
+      required: true
+      typical_seconds: 35
+    - id: park-rec
+      name: Park and Rec
+      description: Park District programs, library or fieldhouse events, and things to do.
+      required: true
+      typical_seconds: 30
+    - id: history
+      name: Portage Past
+      description: A short local-history beat. Rotate out when the week is already full.
+      required: false
+      typical_seconds: 30
+    - id: city-hall
+      name: City Hall Whispers
+      description: Civic process, budgets, and street projects that affect the neighborhood.
+      required: false
+      typical_seconds: 25
+    - id: natter
+      name: Neighborly Natter
+      description: Community groups, volunteer notes, and a light closer when it fits.
+      required: false
+      typical_seconds: 20
+    - id: signoff
+      name: Sign-off
+      description: One practical recap and a goodbye. No host names unless you change that rule.
+      required: true
+      typical_seconds: 15
+  platforms:
+    rss: true
+    spotify: true
+    apple_podcasts: true
+    amazon_music: true
+    youtube: true
+  written:
+    enabled: true
+    formats:
+      - newsletter
+      - blog
+  sources:
+    - Local reporting (for this show, often Block Club Chicago)
+    - National Weather Service forecasts
+    - Chicago Park District event listings
+    - City of Chicago service notices (sanitation, parking, street work)
+    - Official public-safety community alerts
+    - Neighborhood business association calendars
+  news_inputs:
+    - A dated episode brief with links and quotes you have already checked
+    - This week's weather forecast
+    - Confirmed events and hours
+    - Official alerts you are willing to repeat in your own words
+
+# Models checked against Google's Gemini Developer API pricing page on 2026-11-25.
+# Both defaults have a free-tier "Free of charge" row. Rate limits are per
+# project and are shown in Google AI Studio; they are not guaranteed.
+models:
+  provider: gemini
+  text_model: gemini-3.5-flash-lite
+  tts_model: gemini-3.8-flash-lite-tts
+  tts_fallbacks:
+    - gemini-3.8-flash-tts
+    - gemini-3.1-flash-tts-preview
+    - gemini-2.5-flash-preview-tts

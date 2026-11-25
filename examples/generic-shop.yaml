@@ -1,0 +1,66 @@
+# Generic starting config for a shop, parish, nonprofit, or block club.
+# Copy to podcast.yaml (or pass --config) and fill in your own details.
+
+show:
+  name: Main Street Weekly
+  tagline: A short briefing for people who care about our block.
+  niche: >
+    A weekly update from a small organization — what is open, what is coming up,
+    and what neighbors or customers should know.
+  target_audience: Regular customers, parishioners, members, or neighbors.
+  tone: Warm, plain, and practical. No hype, no invented urgency.
+  language: English
+  release_frequency: Weekly
+  episode_length: about 8 minutes
+  typical_minutes: 8
+  signoff: That's it for this week. Thanks for listening, and we'll see you next time.
+  hosts:
+    - name: Narrator
+      role: narrator
+      voice: Kore
+      style: warm, clear, and unhurried
+  sections:
+    - id: welcome
+      name: Welcome
+      description: Greeting and the date.
+      required: true
+    - id: lead
+      name: Lead item
+      description: The one thing you want people to remember.
+      required: true
+    - id: calendar
+      name: This week
+      description: Hours, events, and deadlines.
+      required: true
+    - id: how-to
+      name: How you can help or take part
+      description: A practical ask or tip, never a hard sell.
+      required: false
+    - id: signoff
+      name: Sign-off
+      required: true
+  platforms:
+    rss: true
+    spotify: true
+    apple_podcasts: true
+    amazon_music: true
+    youtube: true
+  written:
+    enabled: true
+    formats:
+      - newsletter
+  sources:
+    - Your own calendar and hours
+    - Official notices you have in writing
+    - Local reporting you are willing to name
+  news_inputs:
+    - A short episode brief with only facts you have checked
+
+models:
+  provider: gemini
+  text_model: gemini-3.5-flash-lite
+  tts_model: gemini-3.8-flash-lite-tts
+  tts_fallbacks:
+    - gemini-3.8-flash-tts
+    - gemini-3.1-flash-tts-preview
+    - gemini-2.5-flash-preview-tts
